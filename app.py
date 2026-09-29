@@ -77,7 +77,7 @@ MODELS = {
     "tiny":     ("tiny",     "Multilingual, auto-detects language, ~75 MB."),
     "base":     ("base",     "Multilingual, auto-detects language, ~145 MB."),
 }
-DEFAULT_MODEL_KEY = "base.en"
+DEFAULT_MODEL_KEY = "tiny.en"
 
 
 def fmt_time(s):
@@ -146,7 +146,9 @@ def get_model(model_key):
         if model_key not in _models_cache:
             from faster_whisper import WhisperModel
             model_name = MODELS[model_key][0]
-            _models_cache[model_key] = WhisperModel(model_name)
+            _models_cache[model_key] = WhisperModel(
+                model_name, device="cpu", compute_type="int8"
+            )
         return _models_cache[model_key]
 
 
