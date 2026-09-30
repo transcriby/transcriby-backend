@@ -1,5 +1,5 @@
 fastapi
 uvicorn
 python-multipart
-faster-whisper
-av<14.0.0
+faster-whisper>=1.1.0
+av>=14.0.0
